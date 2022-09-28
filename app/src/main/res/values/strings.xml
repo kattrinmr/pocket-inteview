@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">pocket-interview</string>
+
+    <!--Auth Fragment-->
+    <string name="txt_title">Pocket Interview</string>
+    <string name="txt_login_with">Войти с помощью:</string>
+    <string name="txt_or">или</string>
+    <string name="txt_hint_email">Email</string>
+    <string name="txt_hint_password">Пароль</string>
+    <string name="txt_account">Нет аккаунта?</string>
+    <string name="btn_registration">Зарегистрироваться</string>
+    <string name="txt_title_registration">Регистрация</string>
+    <string name="txt_hint_enter_email">Введите свой email</string>
+    <string name="txt_hint_enter_password">Придумайте пароль</string>
+    <string name="txt_hint_enter_confirm_password">Повторите пароль</string>
+
+    <!--Registration fragment-->
+</resources>
