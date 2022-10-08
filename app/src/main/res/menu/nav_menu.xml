@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@id/homeFragment"
+        android:icon="@drawable/ic_home"
+        android:title="Главная" />
+
+    <item
+        android:id="@id/collectionsFragment"
+        android:icon="@drawable/ic_people"
+        android:title="Коллекции" />
+
+    <item
+        android:id="@id/settingsFragment"
+        android:icon="@drawable/ic_settings_mini"
+        android:title="Настройки" />
+</menu>
