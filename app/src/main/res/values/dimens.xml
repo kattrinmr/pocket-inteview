@@ -23,6 +23,7 @@
     <dimen name="round_normal">12dp</dimen>
 
     <!--Fonts-->
+    <dimen name="fonts_subtext">12sp</dimen>
     <dimen name="fonts_text">16sp</dimen>
     <dimen name="fonts_headline">20sp</dimen>
     <dimen name="fonts_title">24sp</dimen>

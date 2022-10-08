@@ -19,4 +19,18 @@
         <item name="boxCornerRadiusBottomEnd">@dimen/round_normal</item>
     </style>
 
+    <!--Bottom navigation-->
+    <style name="BottomAppBarOverlay" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="backgroundTint">@color/white</item>
+    </style>
+
+    <style name="BottomNavigation.ActiveItemTextAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/rubik_regular</item>
+    </style>
+
+    <style name="BottomNavigation.InactiveItemTextAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/rubik_regular</item>
+    </style>
+
 </resources>
