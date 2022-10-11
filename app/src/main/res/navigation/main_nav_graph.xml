@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_homeFragment_to_collectionsFragment"
             app:destination="@id/collectionsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_createCollectionFragment"
+            app:destination="@id/createCollectionFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -50,4 +53,13 @@
             android:id="@+id/action_collectionsFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/createCollectionFragment"
+        android:name="com.katerina.pocket_interview.home.ui.fragments.CreateCollectionFragment"
+        android:label="fragment_create_collection"
+        tools:layout="@layout/fragment_create_collection" >
+        <action
+            android:id="@+id/action_createCollectionFragment_to_homeFragment2"
+            app:destination="@id/homeFragment" />
+    </dialog>
 </navigation>

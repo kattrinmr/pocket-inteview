@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.katerina.pocket_interview.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -23,7 +24,9 @@ class HomeFragment : Fragment() {
         super.onStart()
 
         binding.btnAdd.setOnClickListener {
-            CreateCollectionFragment().show(childFragmentManager, CreateCollectionFragment.TAG)
+            findNavController().navigate(
+                HomeFragmentDirections.actionHomeFragmentToCreateCollectionFragment()
+            )
         }
     }
 }

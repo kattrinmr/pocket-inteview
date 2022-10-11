@@ -34,6 +34,13 @@ class CreateCollectionFragment : DialogFragment() {
         params.height = FrameLayout.LayoutParams.WRAP_CONTENT
 
         dialog!!.window!!.attributes = params as WindowManager.LayoutParams
+
+        binding.btnCreate.setOnClickListener {
+            findNavController().navigate(
+                CreateCollectionFragmentDirections.actionCreateCollectionFragmentToHomeFragment2()
+            )
+
+        }
     }
 
     companion object {
