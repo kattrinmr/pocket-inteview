@@ -28,5 +28,6 @@
     <dimen name="fonts_headline">20sp</dimen>
     <dimen name="fonts_title">24sp</dimen>
     <dimen name="spacing_43">43dp</dimen>
+    <dimen name="spacing_progress">350dp</dimen>
 
 </resources>

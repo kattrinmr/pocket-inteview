@@ -30,4 +30,6 @@
     <string name="txt_create_collection">Создание коллекции</string>
     <string name="txt_hint_enter_first_name">Введите своё имя</string>
     <string name="hint_enter_last_name">Введите свою фамилию</string>
+    <string name="txt_sign_out">Выйти из профиля</string>
+    <string name="txt_delete_account">Удалить профиль</string>
 </resources>
