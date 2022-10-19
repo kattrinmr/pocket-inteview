@@ -59,7 +59,7 @@
         android:label="fragment_create_collection"
         tools:layout="@layout/fragment_create_collection" >
         <action
-            android:id="@+id/action_createCollectionFragment_to_homeFragment2"
+            android:id="@+id/action_createCollectionFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </dialog>
 </navigation>

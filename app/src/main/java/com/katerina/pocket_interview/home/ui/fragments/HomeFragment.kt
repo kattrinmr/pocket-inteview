@@ -1,16 +1,51 @@
 package com.katerina.pocket_interview.home.ui.fragments
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreException
+import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import com.katerina.pocket_interview.MyApplication
+import com.katerina.pocket_interview.auth.ui.viewmodels.AuthFragmentViewModel
+import com.katerina.pocket_interview.core.ui.adapters.CollectionsAdapter
+import com.katerina.pocket_interview.core.ui.items.CollectionItem
+import com.katerina.pocket_interview.core.utils.ViewModelFactory
 import com.katerina.pocket_interview.databinding.FragmentHomeBinding
+import com.katerina.pocket_interview.home.ui.viewmodels.HomeFragmentViewModel
+import javax.inject.Inject
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), CollectionsAdapter.OnCollectionSelectedListener {
 
     private lateinit var binding: FragmentHomeBinding
+    private lateinit var auth: FirebaseAuth
+
+    lateinit var firestore: FirebaseFirestore
+
+    private var query: Query? = null
+    private var adapter: CollectionsAdapter? = null
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory<HomeFragmentViewModel>
+    lateinit var homeViewModel: HomeFragmentViewModel
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireActivity().application as MyApplication).appComponent.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -20,13 +55,65 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        homeViewModel = viewModelFactory.getViewModel(this)
+
+        FirebaseFirestore.setLoggingEnabled(true)
+        firestore = Firebase.firestore
+        auth = FirebaseAuth.getInstance()
+
+        query = auth.currentUser?.uid?.let {
+            firestore.collection("users")
+                .document(it)
+                .collection("collections")
+        }
+
+        query?.let {
+            adapter = object : CollectionsAdapter(it, this@HomeFragment) {
+
+                override fun onDataChanged() {
+                    if (itemCount == 0) {
+                        binding.rvCollections.visibility = View.GONE
+                        binding.txtRecyclerEmpty1.visibility = View.VISIBLE
+                        binding.txtRecyclerEmpty2.visibility = View.VISIBLE
+                    } else {
+                        binding.rvCollections.visibility = View.VISIBLE
+                        binding.txtRecyclerEmpty1.visibility = View.GONE
+                        binding.txtRecyclerEmpty2.visibility = View.GONE
+                    }
+                }
+
+                override fun onError(e: FirebaseFirestoreException) {
+                    Snackbar.make(binding.root, "Error: check logs for info", Snackbar.LENGTH_SHORT)
+                        .show()
+                }
+            }
+            binding.rvCollections.adapter = adapter
+        }
+
+        binding.rvCollections.layoutManager = LinearLayoutManager(context)
+    }
+
     override fun onStart() {
         super.onStart()
+
+        adapter?.startListening()
 
         binding.btnAdd.setOnClickListener {
             findNavController().navigate(
                 HomeFragmentDirections.actionHomeFragmentToCreateCollectionFragment()
             )
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        adapter?.stopListening()
+    }
+
+    override fun onCollectionSelected(collection: DocumentSnapshot) {
+        Toast.makeText(requireContext(), "Open collection", Toast.LENGTH_SHORT).show()
     }
 }

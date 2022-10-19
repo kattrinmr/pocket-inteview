@@ -3,13 +3,14 @@ package com.katerina.pocket_interview.di
 import android.app.Application
 import com.katerina.pocket_interview.auth.ui.fragments.AuthFragment
 import com.katerina.pocket_interview.auth.ui.fragments.RegistrationFragment
+import com.katerina.pocket_interview.home.ui.fragments.HomeFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [AuthModule::class, ViewModelModule::class, FirebaseModule::class,
-    RegistrationModule::class, UserModule::class])
+    RegistrationModule::class, UserModule::class, HomeModule::class])
 interface AppComponent {
 
     @Component.Builder
@@ -21,5 +22,6 @@ interface AppComponent {
 
     fun inject(fragment: AuthFragment)
     fun inject(fragment: RegistrationFragment)
+    fun inject(fragment: HomeFragment)
 
 }

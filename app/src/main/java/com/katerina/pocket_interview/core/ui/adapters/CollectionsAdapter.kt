@@ -3,29 +3,41 @@ package com.katerina.pocket_interview.core.ui.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.ktx.toObject
 import com.katerina.pocket_interview.core.ui.items.CollectionItem
-import com.katerina.pocket_interview.databinding.ItemCardBinding
+import com.katerina.pocket_interview.databinding.ItemCollectionBinding
 
-class CollectionsAdapter(
-    private val collectionsList: List<CollectionItem>
-) : RecyclerView.Adapter<CollectionsAdapter.CollectionsViewHolder>()  {
+open class CollectionsAdapter(query: Query, private val listener: OnCollectionSelectedListener) :
+    FirestoreAdapter<CollectionsAdapter.CollectionViewHolder>(query)  {
 
-    inner class CollectionsViewHolder(val binding: ItemCardBinding)
-        : RecyclerView.ViewHolder(binding.root) {}
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CollectionsViewHolder {
-        val binding = ItemCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return CollectionsViewHolder(binding)
+    interface OnCollectionSelectedListener {
+        fun onCollectionSelected(collection: DocumentSnapshot)
     }
 
-    override fun onBindViewHolder(holder: CollectionsViewHolder, position: Int) {
-        with(holder) {
-            with(collectionsList[position]) {
-                binding.txtCollectionTitle.text = this.title
-                binding.txtCollectionTitle.text = this.tag
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CollectionViewHolder {
+        val binding = ItemCollectionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CollectionViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: CollectionViewHolder, position: Int) {
+        holder.bind(getSnapshot(position), listener)
+    }
+
+    inner class CollectionViewHolder(val binding: ItemCollectionBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(snapshot: DocumentSnapshot, listener: OnCollectionSelectedListener?) {
+
+            val collection = snapshot.toObject<CollectionItem>() ?: return
+
+            binding.txtCollectionTitle.text = collection.title
+            binding.txtCollectionTag.text = collection.tag
+
+            binding.root.setOnClickListener {
+                listener?.onCollectionSelected(snapshot)
             }
         }
     }
-
-    override fun getItemCount(): Int = collectionsList.size
 }
