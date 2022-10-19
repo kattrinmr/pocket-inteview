@@ -45,13 +45,17 @@ class RegistrationFragment : Fragment() {
 
         registrationViewModel.registrationObservable.observe(viewLifecycleOwner) { status ->
             when (status) {
-                is ResponseStatus.Loading -> {}
+                is ResponseStatus.Loading -> {
+                    showProgressBar()
+                }
 
                 is ResponseStatus.Error -> {
+                    hideProgressBar()
                     Toast.makeText(requireContext(), status.throwable.message.toString(), Toast.LENGTH_SHORT).show()
                 }
 
                 is ResponseStatus.Success -> {
+                    showProgressBar()
                     val intent = Intent(requireActivity(), MainActivity::class.java)
                     startActivity(intent)
                     requireActivity().finish()
@@ -79,6 +83,48 @@ class RegistrationFragment : Fragment() {
         val confirmPassword = binding.etConfirmPassword.text.toString()
 
         registrationViewModel.createUser(email, password, confirmPassword)
+    }
+
+    private fun showProgressBar() {
+
+        binding.progressBar.visibility = View.VISIBLE
+
+        binding.btnRegistration.visibility = View.GONE
+        binding.btnBack.visibility = View.GONE
+        binding.txtTitle.visibility = View.GONE
+        binding.txtTitleRegistration.visibility = View.GONE
+        binding.etFieldEmail.visibility = View.GONE
+        binding.etFieldConfirmPassword.visibility = View.GONE
+        binding.etFieldPassword.visibility = View.GONE
+        binding.etFieldFirstName.visibility = View.GONE
+        binding.etFieldLastName.visibility = View.GONE
+        binding.etEmail.visibility = View.GONE
+        binding.etConfirmPassword.visibility = View.GONE
+        binding.etPassword.visibility = View.GONE
+        binding.etFirstName.visibility = View.GONE
+        binding.etLastName.visibility = View.GONE
+
+    }
+
+    private fun hideProgressBar() {
+
+        binding.progressBar.visibility = View.GONE
+
+        binding.btnRegistration.visibility = View.VISIBLE
+        binding.btnBack.visibility = View.VISIBLE
+        binding.txtTitle.visibility = View.VISIBLE
+        binding.txtTitleRegistration.visibility = View.VISIBLE
+        binding.etFieldEmail.visibility = View.VISIBLE
+        binding.etFieldConfirmPassword.visibility = View.VISIBLE
+        binding.etFieldPassword.visibility = View.VISIBLE
+        binding.etFieldFirstName.visibility = View.VISIBLE
+        binding.etFieldLastName.visibility = View.VISIBLE
+        binding.etEmail.visibility = View.VISIBLE
+        binding.etConfirmPassword.visibility = View.VISIBLE
+        binding.etPassword.visibility = View.VISIBLE
+        binding.etFirstName.visibility = View.VISIBLE
+        binding.etLastName.visibility = View.VISIBLE
+
     }
 
 

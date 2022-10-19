@@ -46,13 +46,17 @@ class AuthFragment : Fragment() {
 
         authViewModel.authObservable.observe(viewLifecycleOwner) { status ->
             when (status) {
-                is ResponseStatus.Loading -> {}
+                is ResponseStatus.Loading -> {
+                    showProgressBar()
+                }
 
                 is ResponseStatus.Error -> {
+                    hideProgressBar()
                     Toast.makeText(requireContext(), status.throwable.message.toString(), Toast.LENGTH_SHORT).show()
                 }
 
                 is ResponseStatus.Success -> {
+                    showProgressBar()
                     val intent = Intent(requireActivity(), MainActivity::class.java)
                     startActivity(intent)
                     requireActivity().finish()
@@ -76,5 +80,47 @@ class AuthFragment : Fragment() {
         val password = binding.etPassword.text.toString()
 
         authViewModel.auth(email, password)
+    }
+
+
+    private fun showProgressBar() {
+
+        binding.progressBar.visibility = View.VISIBLE
+
+        binding.txtTitle.visibility = View.GONE
+        binding.txtAccount.visibility = View.GONE
+        binding.txtOr.visibility = View.GONE
+        binding.txtLoginWith.visibility = View.GONE
+        binding.icGithub.visibility = View.GONE
+        binding.icGoogle.visibility = View.GONE
+        binding.icVk.visibility = View.GONE
+        binding.etFieldEmail.visibility = View.GONE
+        binding.etFieldPassword.visibility = View.GONE
+        binding.etEmail.visibility = View.GONE
+        binding.etPassword.visibility = View.GONE
+        binding.btnRegistration.visibility = View.GONE
+        binding.btnLogin.visibility = View.GONE
+
+    }
+
+    private fun hideProgressBar() {
+
+        binding.progressBar.visibility = View.GONE
+
+        binding.txtTitle.visibility = View.VISIBLE
+        binding.txtAccount.visibility = View.VISIBLE
+        binding.txtOr.visibility = View.VISIBLE
+        binding.txtLoginWith.visibility = View.VISIBLE
+        binding.icGithub.visibility = View.VISIBLE
+        binding.icGoogle.visibility = View.VISIBLE
+        binding.icVk.visibility = View.VISIBLE
+        binding.etFieldEmail.visibility = View.VISIBLE
+        binding.etFieldPassword.visibility = View.VISIBLE
+        binding.etEmail.visibility = View.VISIBLE
+        binding.etPassword.visibility = View.VISIBLE
+        binding.btnRegistration.visibility = View.VISIBLE
+        binding.btnLogin.visibility = View.VISIBLE
+
+
     }
 }
