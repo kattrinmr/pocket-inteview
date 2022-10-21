@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">pocket-interview</string>
 
-    <!--Auth Fragment-->
+    <!--Auth and Registration fragments-->
     <string name="txt_title">Pocket Interview</string>
     <string name="txt_login_with">Войти с помощью:</string>
     <string name="txt_or">или</string>
@@ -9,27 +9,42 @@
     <string name="txt_hint_password">Пароль</string>
     <string name="txt_account">Нет аккаунта?</string>
     <string name="btn_registration">Зарегистрироваться</string>
+    <string name="btn_login">Войти</string>
     <string name="txt_title_registration">Регистрация</string>
     <string name="txt_hint_enter_email">Введите свой email</string>
     <string name="txt_hint_enter_password">Придумайте пароль</string>
     <string name="txt_hint_enter_confirm_password">Повторите пароль</string>
-
-    <!--Registration fragment-->
-    <string name="txt_collection">Мои коллекции</string>
-    <string name="txt_recycler_empty_1">Пока не создано ни одной коллекции</string>
-    <string name="txt_recycler_empty_2">Нажмите «+», чтобы создать первую коллекцию!</string>
-    <string name="txt_card_collection_title">Название коллекции</string>
-    <string name="txt_card_collection_tag">Тег</string>
-    <string name="btn_login">Войти</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="txt_hint_collection_title">Название коллекции</string>
-    <string name="txt_hint_collection_tag">Тег</string>
-    <string name="btn_create">Создать</string>
-    <string name="btn_cancel">Отменить</string>
-    <string name="txt_create_collection">Создание коллекции</string>
     <string name="txt_hint_enter_first_name">Введите своё имя</string>
     <string name="hint_enter_last_name">Введите свою фамилию</string>
+
+    <!--Home fragment-->
+    <string name="txt_collection">Мои коллекции</string>
+    <string name="txt_recycler_collection_empty_1">Пока не создано ни одной коллекции</string>
+    <string name="txt_recycler_collection_empty_2">Нажмите «+», чтобы создать первую коллекцию!</string>
+
+    <!--Create Collection fragment-->
+    <string name="txt_hint_collection_title">Название коллекции</string>
+    <string name="txt_hint_collection_tag">Тег</string>
+    <string name="txt_create_collection">Создание коллекции</string>
+    <string name="btn_create">Создать</string>
+
+    <!--Collection item-->
+    <string name="txt_card_collection_title">Название коллекции</string>
+    <string name="txt_card_collection_tag">Тег</string>
+
+    <!--Card item-->
+    <string name="txt_card_card_title">Название карточки</string>
+
+    <!--Settings fragment-->
     <string name="txt_sign_out">Выйти из профиля</string>
     <string name="txt_delete_account">Удалить профиль</string>
+
+    <!--Current collection fragment-->
+    <string name="txt_collection_title_tmp">Название коллекции</string>
+    <string name="txt_recycler_card_empty_1">Пока не создано ни одной карточки</string>
+    <string name="txt_recycler_card_empty_2">Нажмите «+», чтобы создать первую карточку!</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txt_profile_fullname">Имя и фамилия</string>
+    <string name="txt_profile_email">example@example.com</string>
 </resources>

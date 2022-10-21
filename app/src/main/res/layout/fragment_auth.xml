@@ -1,199 +1,193 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".auth.ui.fragments.AuthFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <TextView
+        android:id="@+id/txt_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_80"
+
+        android:fontFamily="@font/rubik_mono_one_regular"
+        android:text="@string/txt_title"
+        android:textColor="@color/black"
+        android:textSize="@dimen/fonts_headline"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_login_with"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_80"
+
+        android:fontFamily="@font/rubik_regular"
+        android:text="@string/txt_login_with"
+        android:textColor="@color/black"
+        android:textSize="@dimen/fonts_text"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_title" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/layout_buttons"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_24"
+        android:gravity="center"
+        android:orientation="horizontal"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_login_with">
+
+        <ImageView
+            android:id="@+id/ic_github"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_github" />
+
+        <ImageView
+            android:id="@+id/ic_vk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_vk" />
+
+        <ImageView
+            android:id="@+id/ic_google"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_google" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <TextView
+        android:id="@+id/txt_or"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_24"
+
+        android:fontFamily="@font/rubik_regular"
+        android:text="@string/txt_or"
+        android:textColor="@color/black"
+        android:textSize="@dimen/fonts_text"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_buttons" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/et_field_email"
+        style="@style/EditTextField"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
 
-        <TextView
-            android:id="@+id/txt_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_80"
+        android:layout_marginHorizontal="@dimen/spacing_24"
+        android:layout_marginTop="@dimen/spacing_16"
 
-            android:fontFamily="@font/rubik_mono_one_regular"
-            android:text="@string/txt_title"
-            android:textColor="@color/black"
-            android:textSize="@dimen/fonts_headline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_or">
 
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/txt_login_with"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_80"
-
-            android:fontFamily="@font/rubik_regular"
-            android:text="@string/txt_login_with"
-            android:textColor="@color/black"
-            android:textSize="@dimen/fonts_text"
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txt_title" />
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/layout_buttons"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_24"
-            android:gravity="center"
-            android:orientation="horizontal"
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txt_login_with">
-
-            <ImageView
-                android:id="@+id/ic_github"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/ic_github" />
-
-            <ImageView
-                android:id="@+id/ic_vk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/ic_vk" />
-
-            <ImageView
-                android:id="@+id/ic_google"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/ic_google" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <TextView
-            android:id="@+id/txt_or"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_24"
-
-            android:fontFamily="@font/rubik_regular"
-            android:text="@string/txt_or"
-            android:textColor="@color/black"
-            android:textSize="@dimen/fonts_text"
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layout_buttons" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_field_email"
-            style="@style/EditTextField"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="@string/txt_hint_email"
+            android:inputType="textEmailAddress" />
 
-            android:layout_marginHorizontal="@dimen/spacing_24"
-            android:layout_marginTop="@dimen/spacing_16"
+    </com.google.android.material.textfield.TextInputLayout>
 
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txt_or">
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/et_field_password"
+        style="@style/EditTextField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:hint="@string/txt_hint_email" />
+        android:layout_marginHorizontal="@dimen/spacing_24"
+        android:layout_marginTop="@dimen/spacing_16"
 
-        </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_field_email">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_field_password"
-            style="@style/EditTextField"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="@string/txt_hint_password"
+            android:inputType="textPassword" />
 
-            android:layout_marginHorizontal="@dimen/spacing_24"
-            android:layout_marginTop="@dimen/spacing_16"
+    </com.google.android.material.textfield.TextInputLayout>
 
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_field_email">
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_16"
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:hint="@string/txt_hint_password" />
+        android:backgroundTint="@color/black"
 
-        </com.google.android.material.textfield.TextInputLayout>
+        android:fontFamily="@font/rubik_regular"
+        android:text="@string/btn_login"
 
-        <Button
-            android:id="@+id/btn_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_field_password" />
 
-            android:backgroundTint="@color/black"
+    <TextView
+        android:id="@+id/txt_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_80"
 
-            android:fontFamily="@font/rubik_regular"
-            android:text="@string/btn_login"
+        android:fontFamily="@font/rubik_regular"
+        android:text="@string/txt_account"
+        android:textColor="@color/black"
+        android:textSize="@dimen/fonts_text"
 
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_field_password" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_login" />
 
-        <TextView
-            android:id="@+id/txt_account"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_80"
+    <Button
+        android:id="@+id/btn_registration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_4"
 
-            android:fontFamily="@font/rubik_regular"
-            android:text="@string/txt_account"
-            android:textColor="@color/black"
-            android:textSize="@dimen/fonts_text"
+        android:backgroundTint="@color/black"
 
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_login" />
+        android:fontFamily="@font/rubik_regular"
+        android:text="@string/btn_registration"
 
-        <Button
-            android:id="@+id/btn_registration"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_account" />
 
-            android:backgroundTint="@color/black"
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_progress"
+        android:indeterminate="true"
 
-            android:fontFamily="@font/rubik_regular"
-            android:text="@string/btn_registration"
+        android:visibility="gone"
+        app:indicatorColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
 
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txt_account" />
-
-        <com.google.android.material.progressindicator.CircularProgressIndicator
-            android:id="@+id/progress_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:indeterminate="true"
-            android:layout_marginTop="@dimen/spacing_progress"
-
-            app:showAnimationBehavior="outward"
-            app:indicatorColor="@color/black"
-            android:visibility="gone"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:showAnimationBehavior="outward" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

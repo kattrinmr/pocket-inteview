@@ -6,4 +6,6 @@ import com.google.firebase.auth.AuthResult
 interface RegistrationRepository {
 
     suspend fun createUserByEmailAndPassword(email: String, password: String): Task<AuthResult>
+
+    suspend fun addCurrentUserInitData(fullname: String, email: String)
 }

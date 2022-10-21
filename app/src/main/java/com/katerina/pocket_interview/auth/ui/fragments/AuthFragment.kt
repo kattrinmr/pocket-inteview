@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.katerina.pocket_interview.MainActivity
 import com.katerina.pocket_interview.MyApplication
 import com.katerina.pocket_interview.R
@@ -52,7 +53,7 @@ class AuthFragment : Fragment() {
 
                 is ResponseStatus.Error -> {
                     hideProgressBar()
-                    Toast.makeText(requireContext(), status.throwable.message.toString(), Toast.LENGTH_SHORT).show()
+                    Snackbar.make(binding.root, status.throwable.message.toString(), Snackbar.LENGTH_SHORT).show()
                 }
 
                 is ResponseStatus.Success -> {

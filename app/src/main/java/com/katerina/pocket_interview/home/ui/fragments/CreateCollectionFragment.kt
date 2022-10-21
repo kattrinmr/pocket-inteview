@@ -78,9 +78,4 @@ class CreateCollectionFragment : DialogFragment() {
     }
 
     private fun createCollection(title: String, tag: String) = CollectionItem(title, tag)
-
-    companion object {
-        const val TAG = "CreateCollectionDialog"
-    }
-
 }

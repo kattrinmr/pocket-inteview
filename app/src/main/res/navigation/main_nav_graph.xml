@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_profileFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_profileEditModeFragment"
+            app:destination="@id/profileEditModeFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -62,4 +65,12 @@
             android:id="@+id/action_createCollectionFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </dialog>
+    <fragment
+        android:id="@+id/profileEditModeFragment"
+        android:name="com.katerina.pocket_interview.profile.ui.fragments.ProfileEditModeFragment"
+        android:label="ProfileEditModeFragment" >
+        <action
+            android:id="@+id/action_profileEditModeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
 </navigation>

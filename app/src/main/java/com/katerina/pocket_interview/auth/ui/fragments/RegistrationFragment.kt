@@ -9,9 +9,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.katerina.pocket_interview.MainActivity
 import com.katerina.pocket_interview.MyApplication
 import com.katerina.pocket_interview.auth.ui.viewmodels.RegistrationFragmentViewModel
+import com.katerina.pocket_interview.core.domain.models.UserModel
+import com.katerina.pocket_interview.core.ui.items.CollectionItem
 import com.katerina.pocket_interview.core.utils.ViewModelFactory
 import com.katerina.pocket_interview.core.utils.responses.ResponseStatus
 import com.katerina.pocket_interview.databinding.FragmentRegistrationBinding
@@ -24,6 +31,9 @@ class RegistrationFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory<RegistrationFragmentViewModel>
     lateinit var registrationViewModel: RegistrationFragmentViewModel
+
+    lateinit var auth: FirebaseAuth
+    lateinit var firestore: FirebaseFirestore
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -41,6 +51,9 @@ class RegistrationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        auth = FirebaseAuth.getInstance()
+        firestore = Firebase.firestore
+
         registrationViewModel = viewModelFactory.getViewModel(this)
 
         registrationViewModel.registrationObservable.observe(viewLifecycleOwner) { status ->
@@ -51,11 +64,14 @@ class RegistrationFragment : Fragment() {
 
                 is ResponseStatus.Error -> {
                     hideProgressBar()
-                    Toast.makeText(requireContext(), status.throwable.message.toString(), Toast.LENGTH_SHORT).show()
+                    Snackbar.make(binding.root, status.throwable.message.toString(), Snackbar.LENGTH_SHORT).show()
                 }
 
                 is ResponseStatus.Success -> {
                     showProgressBar()
+
+                    saveCurrentUserInitData(firestore, auth, getCurrentUserInitData())
+
                     val intent = Intent(requireActivity(), MainActivity::class.java)
                     startActivity(intent)
                     requireActivity().finish()
@@ -83,6 +99,31 @@ class RegistrationFragment : Fragment() {
         val confirmPassword = binding.etConfirmPassword.text.toString()
 
         registrationViewModel.createUser(email, password, confirmPassword)
+    }
+
+    private fun getCurrentUserInitData(): HashMap<String, String> {
+
+        val fullname = binding.etFirstName.text.toString() + " " + binding.etLastName.text.toString()
+        val email = binding.etEmail.text.toString()
+
+        return hashMapOf(
+            "fullname" to fullname,
+            "email" to email
+        )
+    }
+
+    private fun saveCurrentUserInitData(db: FirebaseFirestore,
+                                        user: FirebaseAuth,
+                                        data: HashMap<String, String>) {
+        db.collection("users")
+            .document(user.currentUser!!.uid)
+            .set(data)
+            .addOnSuccessListener {
+                Snackbar.make(binding.root, "Всё записалось успешно", Snackbar.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {
+                Snackbar.make(binding.root, "Чёто пошло не так", Snackbar.LENGTH_SHORT).show()
+            }
     }
 
     private fun showProgressBar() {
@@ -126,7 +167,5 @@ class RegistrationFragment : Fragment() {
         binding.etLastName.visibility = View.VISIBLE
 
     }
-
-
 
 }

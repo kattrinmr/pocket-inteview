@@ -104,8 +104,8 @@
             android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:hint="@string/txt_hint_enter_email" />
+            android:hint="@string/txt_hint_enter_email"
+            android:inputType="textEmailAddress" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -125,8 +125,8 @@
             android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:hint="@string/txt_hint_enter_password" />
+            android:hint="@string/txt_hint_enter_password"
+            android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -146,8 +146,8 @@
             android:id="@+id/et_confirm_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:hint="@string/txt_hint_enter_confirm_password" />
+            android:hint="@string/txt_hint_enter_confirm_password"
+            android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -163,25 +163,24 @@
         android:fontFamily="@font/rubik_regular"
         android:text="@string/btn_registration"
 
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_field_confirm_password"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/et_field_confirm_password" />
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:indeterminate="true"
         android:layout_marginTop="@dimen/spacing_progress"
+        android:indeterminate="true"
 
-        app:showAnimationBehavior="outward"
-        app:indicatorColor="@color/black"
         android:visibility="gone"
+        app:indicatorColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
 
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
+        app:showAnimationBehavior="outward" />
 </androidx.constraintlayout.widget.ConstraintLayout>

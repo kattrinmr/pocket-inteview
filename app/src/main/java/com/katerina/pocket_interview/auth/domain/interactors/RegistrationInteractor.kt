@@ -8,7 +8,6 @@ import javax.inject.Inject
 
 class RegistrationInteractor @Inject constructor(
     private val registrationRepository: RegistrationRepository,
-    val userRepository: UserRepository
 ) {
 
     suspend fun registerUser(email: String, password: String, confirmPassword: String): Task<AuthResult> {
@@ -22,8 +21,4 @@ class RegistrationInteractor @Inject constructor(
         if (password != confirmPassword) return false
         return true
     }
-
-//    suspend fun addUser(fullname: String, email: String) {
-//        userRepository.add()
-//    }
 }
